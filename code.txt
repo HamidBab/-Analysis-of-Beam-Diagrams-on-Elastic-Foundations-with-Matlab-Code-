@@ -1,0 +1,217 @@
+clc
+clear all
+k=14*10^6; % N/m^2 =14 N/mm^2
+E=200e9; % Pa
+I=36.9e-6; % m^4= 36.9e6 mm^4
+P=170*1000; % N= 170 KN
+Beta=(k/(4*E*I))^0.25 % m^4
+BetaInMililimeter=Beta/1000
+Vmax=P*Beta/(2*k) 
+VmaxInMilimeter=Vmax*1000
+Mmax=P/4/Beta 
+MmaxInKNm=Mmax/1000
+% Plot Deflection
+
+% Create figure
+figure1 = figure('WindowState','maximized');
+
+% Create axes
+axes1 = axes('Parent',figure1);
+hold(axes1,'on');
+
+box(axes1,'on');
+hold(axes1,'off');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x=0:0.05:10;
+y=-(P*Beta/(2*k)).*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x));
+plot(x,y,'LineWidth',3);
+hold on 
+xminus=0:-0.05:-10;
+plot(xminus,y,'LineWidth',3);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Create ylabel
+ylabel('Deflection (m)');
+
+% Create xlabel
+xlabel('x (m)');
+
+% Set the remaining axes properties
+set(axes1,'FontSize',16,'XGrid','on','YGrid','on');
+
+
+
+
+clc
+clear all
+k=14*10^6; % N/m^2 =14 N/mm^2
+E=200e9; % Pa
+I=36.9e-6; % m^4= 36.9e6 mm^4
+P=170*1000; % N= 170 KN
+Beta=(k/(4*E*I))^0.25 % m^4
+BetaInMililimeter=Beta/1000
+Vmax=P*Beta/(2*k) 
+VmaxInMilimeter=Vmax*1000
+Mmax=P/4/Beta 
+MmaxInKNm=Mmax/1000
+
+
+
+
+
+
+
+
+% Plot Deflection
+
+% Create figure
+figure1 = figure('WindowState','maximized');
+
+% Create axes
+axes1 = axes('Parent',figure1);
+hold(axes1,'on');
+
+box(axes1,'on');
+hold(axes1,'off');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x=0:0.05:10;
+y=-(P*Beta/(2*k)).*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x));
+plot(x,y,'LineWidth',3);
+hold on 
+xminus=0:-0.05:-10;
+plot(xminus,y,'LineWidth',3);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Create ylabel
+ylabel('Deflection (m)');
+
+% Create xlabel
+xlabel('x (m)');
+
+% Set the remaining axes properties
+set(axes1,'FontSize',16,'XGrid','on','YGrid','on');
+
+
+
+
+
+
+
+% Plot Angle
+
+% Create figure
+figure2 = figure('WindowState','maximized');
+
+% Create axes
+axes2 = axes('Parent',figure2);
+hold(axes2,'on');
+
+box(axes2,'on');
+hold(axes2,'off');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x=0:0.05:10;
+Angle=-(P*Beta/(2*k)).*(-Beta.*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x))+exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x)));
+plot(x,Angle,'LineWidth',3);
+hold on 
+xminus=0:-0.05:-10;
+plot(xminus,-Angle,'LineWidth',3);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Create ylabel
+ylabel('Angle');
+
+% Create xlabel
+xlabel('x (m)');
+
+% Set the remaining axes properties
+set(axes2,'FontSize',16,'XGrid','on','YGrid','on');
+
+
+
+
+
+
+
+
+
+% Plot Moment
+
+% Create figure
+figure3 = figure('WindowState','maximized');
+
+% Create axes
+axes3 = axes('Parent',figure3);
+hold(axes3,'on');
+
+box(axes3,'on');
+hold(axes3,'off');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x=0:0.05:10;
+% Moment=E*I*(-(P*Beta/(2*k))).*(Beta.^2.*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x))-Beta.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x)) ...
+%     -Beta.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))+exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x)));
+Moment=-E*I*(-(P*Beta/(2*k))).*(Beta.^2.*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x))-2*Beta.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))+exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x)));
+plot(x,Moment,'LineWidth',3);
+hold on 
+xminus=0:-0.05:-10;
+plot(xminus,Moment,'LineWidth',3);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Create ylabel
+ylabel('Moment');
+
+% Create xlabel
+xlabel('x (m)');
+
+% Set the remaining axes properties
+set(axes3,'FontSize',16,'XGrid','on','YGrid','on');
+
+
+
+
+
+
+
+
+
+
+% Plot Shear
+
+% Create figure
+figure4 = figure('WindowState','maximized');
+
+% Create axes
+axes4 = axes('Parent',figure4);
+hold(axes4,'on');
+
+box(axes4,'on');
+hold(axes4,'off');
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+x=0:0.05:10;
+% Moment=E*I*(-(P*Beta/(2*k))).*(Beta.^2.*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x))-Beta.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x)) ...
+%     -Beta.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))+exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x)));
+% Shear=-E*I*(-(P*Beta/(2*k))).*(-Beta.^3.*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x))+Beta.^2.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))
+%     +2*Beta.^2.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))-2*Beta.*exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x))
+%    -Beta.*exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x))+exp(-Beta.*x).*(-Beta.^3.*cos(Beta.*x)+Beta.^3.*sin(Beta.*x)));
+Shear=-E*I*(-(P*Beta/(2*k))).*(-Beta.^3.*exp(-Beta.*x).*(sin(Beta.*x)+cos(Beta.*x))+Beta.^2.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))+2*Beta.^2.*exp(-Beta.*x).*(Beta.*cos(Beta.*x)-Beta.*sin(Beta.*x))-2*Beta.*exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x))-Beta.*exp(-Beta.*x).*(-Beta.^2.*sin(Beta.*x)-Beta.^2.*cos(Beta.*x))+exp(-Beta.*x).*
+
+Hamid bab, [1/6/2023 6:27 PM]
+-Beta.^3.*cos(Beta.*x)+Beta.^3.*sin(Beta.*x)));
+plot(x,Shear,'LineWidth',3);
+hold on 
+xminus=0:-0.05:-10;
+plot(xminus,-Shear,'LineWidth',3);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Create ylabel
+ylabel('Shear');
+
+% Create xlabel
+xlabel('x (m)');
+
+% Set the remaining axes properties
+set(axes4,'FontSize',16,'XGrid','on','YGrid','on');
